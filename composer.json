@@ -1,0 +1,21 @@
+{
+    "name": "contao/php-cs-fixer",
+    "type": "library",
+    "description": "PHP-CS-Fixer configurations for Contao",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Leo Feyer",
+            "homepage": "https://github.com/leofeyer"
+        }
+    ],
+    "require": {
+        "php": "^5.6 || ^7.1",
+        "friendsofphp/php-cs-fixer": "^2.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "Contao\\PhpCsFixer\\": "src/"
+        }
+    }
+}
