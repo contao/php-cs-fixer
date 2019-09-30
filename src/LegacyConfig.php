@@ -14,28 +14,30 @@ namespace Contao\PhpCsFixer;
 
 class LegacyConfig extends DefaultConfig
 {
-    public function getName()
+    public function getName(): string
     {
         return 'Contao legacy';
     }
 
-    public function getIndent()
+    public function getIndent(): string
     {
         return "\t";
     }
 
-    public function getRules()
+    public function getRules(): array
     {
         $rules = parent::getRules();
 
         $this->adjustPsr2Rules($rules);
         $this->adjustSymfonyRules($rules);
         $this->adjustPhpCsFixerRules($rules);
+        $this->adjustPhp71MigrationRules($rules);
+        $this->adjustOtherRules($rules);
 
         return $rules;
     }
 
-    private function adjustPsr2Rules(array &$rules)
+    private function adjustPsr2Rules(array &$rules): void
     {
         $rules['braces'] = [
             'allow_single_line_closure' => true,
@@ -46,7 +48,7 @@ class LegacyConfig extends DefaultConfig
         $rules['no_spaces_after_function_name'] = false;
     }
 
-    private function adjustSymfonyRules(array &$rules)
+    private function adjustSymfonyRules(array &$rules): void
     {
         $rules['binary_operator_spaces'] = false;
         $rules['concat_space'] = ['spacing' => 'one'];
@@ -65,11 +67,9 @@ class LegacyConfig extends DefaultConfig
         }
     }
 
-    private function adjustPhpCsFixerRules(array &$rules)
+    private function adjustPhpCsFixerRules(array &$rules): void
     {
         $rules['array_syntax'] = ['syntax' => 'long'];
-        $rules['combine_consecutive_issets'] = false;
-        $rules['combine_consecutive_unsets'] = false;
         $rules['multiline_whitespace_before_semicolons'] = false;
         $rules['ordered_class_elements'] = false;
         $rules['phpdoc_order'] = false;
@@ -79,5 +79,18 @@ class LegacyConfig extends DefaultConfig
         if (false !== $key = array_search('case', $rules['blank_line_before_statement']['statements'], true)) {
             unset($rules['blank_line_before_statement']['statements'][$key]);
         }
+    }
+
+    private function adjustPhp71MigrationRules(array &$rules): void
+    {
+        $rules['declare_strict_types'] = false;
+        $rules['visibility_required'] = false;
+        $rules['void_return'] = false;
+    }
+
+    private function adjustOtherRules(array &$rules): void
+    {
+        $rules['list_syntax'] = ['syntax' => 'long'];
+        $rules['no_superfluous_phpdoc_tags'] = false;
     }
 }

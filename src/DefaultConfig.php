@@ -21,24 +21,26 @@ class DefaultConfig extends Config
      */
     protected $header;
 
-    public function __construct($header = null)
+    public function __construct(string $header = null)
     {
         parent::__construct();
 
         $this->header = $header;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'Contao default';
     }
 
-    public function getRules()
+    public function getRules(): array
     {
         $rules = [
             '@PhpCsFixer' => true,
             '@PhpCsFixer:risky' => true,
-            '@PHPUnit57Migration:risky' => true,
+            '@PHP71Migration' => true,
+            '@PHP71Migration:risky' => true,
+            '@PHPUnit75Migration:risky' => true,
 
             // @PhpCsFixer adjustments
             'blank_line_before_statement' => [
@@ -83,6 +85,9 @@ class DefaultConfig extends Config
 
             // Other
             'linebreak_after_opening_tag' => true,
+            'list_syntax' => ['syntax' => 'short'],
+            'no_superfluous_phpdoc_tags' => true,
+            'static_lambda' => true,
         ];
 
         if (null !== $this->header) {
@@ -92,12 +97,12 @@ class DefaultConfig extends Config
         return $rules;
     }
 
-    public function getRiskyAllowed()
+    public function getRiskyAllowed(): bool
     {
         return true;
     }
 
-    public function getCacheFile()
+    public function getCacheFile(): string
     {
         return sys_get_temp_dir().'/'.strtr(static::class, '\\', '_');
     }
