@@ -40,17 +40,22 @@ class DefaultConfig extends Config
             '@PhpCsFixer:risky' => true,
             '@PHPUnit57Migration:risky' => true,
 
+            // @Symfony adjustments
+            'no_superfluous_phpdoc_tags' => false,
+
             // @PhpCsFixer adjustments
             'blank_line_before_statement' => [
                 'statements' => [
                     'case',
                     'declare',
+                    'default',
                     'do',
                     'for',
                     'foreach',
                     'if',
                     'return',
                     'switch',
+                    'throw',
                     'try',
                     'while',
                 ],
@@ -74,6 +79,7 @@ class DefaultConfig extends Config
             'single_line_comment_style' => [
                 'comment_types' => ['hash'],
             ],
+            'single_line_throw' => true,
 
             // @PhpCsFixer:risky adjustments
             'final_internal_class' => false,
