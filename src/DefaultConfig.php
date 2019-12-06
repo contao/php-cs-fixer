@@ -47,12 +47,14 @@ class DefaultConfig extends Config
                 'statements' => [
                     'case',
                     'declare',
+                    'default',
                     'do',
                     'for',
                     'foreach',
                     'if',
                     'return',
                     'switch',
+                    'throw',
                     'try',
                     'while',
                 ],
@@ -73,9 +75,10 @@ class DefaultConfig extends Config
             'php_unit_internal_class' => false,
             'php_unit_test_class_requires_covers' => false,
             'phpdoc_types_order' => false,
-            'single_line_comment_style' => [
+             'single_line_comment_style' => [
                 'comment_types' => ['hash'],
             ],
+            'single_line_throw' => true,
 
             // @PhpCsFixer:risky adjustments
             'final_internal_class' => false,
