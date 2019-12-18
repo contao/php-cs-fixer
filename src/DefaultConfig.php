@@ -82,6 +82,7 @@ class DefaultConfig extends Config
 
             // @PhpCsFixer:risky adjustments
             'final_internal_class' => false,
+            'php_unit_strict' => false,
             'php_unit_test_case_static_method_calls' => [
                 'call_type' => 'this',
             ],
